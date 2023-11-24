@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="main.css" rel="stylesheet">
-    <script src="index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./index.js" defer></script>
     <title>Locations</title>
 </head>
 <body>
@@ -32,42 +33,74 @@
                 ADVANCED FILTERS
             </div>
             <div class="type op-adaptive">
-                <select name="type" class="filter select">
+                <select name="name" class="filter select" data-filter="name">
                     <option disabled selected hidden>Type</option>
                     <option value="earth">Earth</option>
                     <option value="non-earth">Non-Earth</option>
                 </select>
             </div>
             <div class="dimension op-adaptive">
-                <select name="dimension" class="filter select">
+                <select name="dimension" class="filter select" data-filter="dimension">
                     <option disabled selected hidden>Dimension</option>
-                    <option value="c-137">C-137</option>
+                    <option value="C-137">C-137</option>
                     <option value="non-c-137">Non-C-137</option>
                 </select>
             </div>
-        </section>
-        <section class="examples">
-            <!--Возможно сюда проще вставить контент через JS-->
-            <div class="grid-element">1</div>
-            <div class="grid-element">2</div>
-            <div class="grid-element">3</div>
-            <div class="grid-element">4</div>
-            <div class="grid-element">5</div>
-            <div class="grid-element">6</div>
-            <div class="grid-element">7</div>
-            <div class="grid-element">8</div>
-            <div class="grid-element">9</div>
-            <div class="grid-element">10</div>
-            <div class="grid-element">11</div>
-            <div class="grid-element">12</div>
         </section>
         <div class="button">
           <button type="button" class="more-btn" id="button">LOAD MORE</button>
         </div>
     </main>
-    <script>
+    <script type="module">
       switcher();
-      contentMaker();
+
+      const productGrid = await axios.get('../api/planets.json');
+      const gridExample = new ExampleGrid(productGrid.data);
+      document.querySelector('.filters').after(gridExample.elem);
+
+      let initFilters = {
+        name: "Earth",
+        type: "Planet",
+      }
+
+      if(document.body.clientWidth <= 800) {
+        initFilters.amount = 4;
+      } else {
+        initFilters.amount = 12;
+      }
+
+      gridExample.updateFilter(initFilters);
+
+      window.addEventListener('resize', () => {
+        if (document.body.clientWidth <= 800) {
+          initFilters.amount = 4;
+          gridExample.updateFilter(initFilters);
+        } else {
+          initFilters.amount = 12;
+          gridExample.updateFilter(initFilters);
+        }
+      });
+
+      document.querySelector('button').addEventListener('click', () => {
+        if (document.body.clientWidth <= 800) {
+            console.log(initFilters.amount)
+          initFilters.amount += 2;
+          gridExample.updateFilter(initFilters);
+        } else {
+          initFilters.amount += 4;
+          gridExample.updateFilter(initFilters);
+        }
+      })
+      /*document.body.addEventListener('change', (event) => {
+        if (event.target.dataset.filter === 'name') {
+          initFilters.name = event.target.value;
+          gridExample.updateFilter(initFilters);
+         }
+         if (event.target.dataset.filter === 'dimension') {
+          initFilters.dimension = event.target.value;
+          gridExample.updateFilter(initFilters);
+         }
+      })*/
     </script>
 
     <footer class="page-footer">
