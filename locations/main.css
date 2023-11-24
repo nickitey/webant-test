@@ -27,7 +27,7 @@ header {
   border-bottom: 1px solid #c9c9c9;
 }
 
-header ul {
+.nav-list {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
@@ -201,7 +201,7 @@ header a {
       margin: 5px;
     }
   
-    header ul {
+    .nav-list {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -250,6 +250,9 @@ header a {
   @media (max-width: 400px) {
     header {
       display: block;
+      position: relative;
+      top: 0;
+      left: 0;
     }
   
     header img {
@@ -265,8 +268,11 @@ header a {
       top: 20px;
     }
   
-    header ul {
+    .nav-list {
       display: none;
+      /*position: absolute;
+      top: 60px;
+      right: 0;*/
     }
     
     .adaptive {
