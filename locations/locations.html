@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="main.css" rel="stylesheet">
+    <script src="index.js"></script>
+    <title>Locations</title>
+</head>
+<body>
+    <header>
+        <a href="" class="logo">
+          <img src="../assets/logo-black.png" alt="logo-black">
+        </a>
+
+        <nav class="main-navigation">
+            <ul>
+                <li><h3><a href="">Characters</a></h3></li>
+                <li><h3><a href="">Locations</a></h3></li>
+                <li><h3><a href="">Episodes</a></h3></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <img src="../assets/rick-and-morty.png" alt="Rick and Morty diving a portal" class="main-pic">
+        <section class="filters">
+            <div class="search">
+              <input type="search" id="search" name="search" class="filter" placeholder="Filter by name...">
+            </div>
+            <div class="adaptive">
+                ADVANCED FILTERS
+            </div>
+            <div class="type op-adaptive">
+                <select name="type" class="filter select">
+                    <option disabled selected hidden>Type</option>
+                    <option value="earth">Earth</option>
+                    <option value="non-earth">Non-Earth</option>
+                </select>
+            </div>
+            <div class="dimension op-adaptive">
+                <select name="dimension" class="filter select">
+                    <option disabled selected hidden>Dimension</option>
+                    <option value="c-137">C-137</option>
+                    <option value="non-c-137">Non-C-137</option>
+                </select>
+            </div>
+        </section>
+        <section class="examples">
+            <!--Возможно сюда проще вставить контент через JS-->
+            <div class="grid-element">1</div>
+            <div class="grid-element">2</div>
+            <div class="grid-element">3</div>
+            <div class="grid-element">4</div>
+            <div class="grid-element">5</div>
+            <div class="grid-element">6</div>
+            <div class="grid-element">7</div>
+            <div class="grid-element">8</div>
+            <div class="grid-element">9</div>
+            <div class="grid-element">10</div>
+            <div class="grid-element">11</div>
+            <div class="grid-element">12</div>
+        </section>
+        <div class="button">
+          <button type="button" class="more-btn" id="button">LOAD MORE</button>
+        </div>
+    </main>
+    <script>
+      clearBlue();
+    </script>
+
+    <footer class="page-footer">
+        <p>Make with ❤️ for the MobProgramming team</p>
+    </footer>
+</body>
+</html>
