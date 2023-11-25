@@ -141,8 +141,25 @@ function switcher() {
   const navList = document.querySelector('.nav-list');
   const sectionMain = document.querySelector('.main-content');
   document.addEventListener('click', (event) => {
+    console.log(event.value);
     if (event.target === navMenu) {
       if (!navList.style.display || navList.style.display === 'none') {
+        navMenu.classList.add('menu-open');
+        navList.style.display = 'inline';
+        sectionMain.style.display = 'none';
+      } else {
+        navMenu.classList.remove('menu-open');
+        navList.style.display = 'none';
+        sectionMain.style.display = '';
+      }
+    }
+  })
+  window.addEventListener('resize', () => {
+    if (document.body.clientWidth > 400) {
+      navList.style.display = 'flex';
+      sectionMain.style.display = '';
+    } else {
+      if (navMenu.classList.contains('menu-open')) {
         navList.style.display = 'inline';
         sectionMain.style.display = 'none';
       } else {
@@ -150,6 +167,6 @@ function switcher() {
         sectionMain.style.display = '';
       }
     }
-  })
+  });
 }
 
