@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="main.css" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./index.js" defer></script>
+    <title>Locations</title>
+</head>
+<body>
+    <header>
+        <a href="" class="logo">
+          <img src="../assets/logo-black.png" alt="logo-black">
+        </a>
+
+        <nav class="main-navigation">
+            <ul class="nav-list">
+                <li><h3><a href="">Characters</a></h3></li>
+                <li><h3><a href="">Locations</a></h3></li>
+                <li><h3><a href="">Episodes</a></h3></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <img src="../assets/rick-and-morty2.png" alt="Rick and Morty are looking at something" class="main-pic">
+        <section class="filters">
+            <div class="search">
+              <input type="search" id="search" name="search" class="filter" placeholder="Filter by name or episode (ex. S01 or S01E02)">
+            </div>
+        </section>
+        <div class="more-button-container">
+          <button type="button" class="more-btn" id="button">LOAD MORE</button>
+        </div>
+    </main>
+    <script type="module">
+      switcher();
+
+      const episodesGrid = await axios.get('../api/planets.json');
+      const gridExample = new ExampleGrid(episodesGrid.data);
+      document.querySelector('.filters').after(gridExample.elem);
+
+      let initFilters = {
+        name: "earth",
+      }
+
+      if(document.body.clientWidth <= 800) {
+        initFilters.amount = 4;
+      } else {
+        initFilters.amount = 12;
+      }
+
+      gridExample.updateFilter(initFilters);
+
+      window.addEventListener('resize', () => {
+        if (document.body.clientWidth <= 800) {
+          initFilters.amount = 4;
+          gridExample.updateFilter(initFilters);
+        } else {
+          initFilters.amount = 12;
+          gridExample.updateFilter(initFilters);
+        }
+      });
+
+      document.querySelector('.more-button-container').addEventListener('click', () => {
+        if (document.body.clientWidth <= 800) {
+            console.log(initFilters.amount)
+          initFilters.amount += 2;
+          gridExample.updateFilter(initFilters);
+        } else {
+          initFilters.amount += 4;
+          gridExample.updateFilter(initFilters);
+        }
+      })
+
+      function mainFiltersSwitcher(event) {
+        if (event.target.dataset.filter === 'type') {
+          initFilters.name = null;
+          initFilters.type = event.target.value;
+          gridExample.updateFilter(initFilters);
+         }
+         if (event.target.dataset.filter === 'dimension') {
+          initFilters.name = null;
+          initFilters.dimension = event.target.value;
+          gridExample.updateFilter(initFilters);
+         }
+      }
+
+      function modalFiltersSwitcher(event) {
+        if (event.target.dataset.filter === 'type') {
+          initFilters.name = null;
+          initFilters.type = event.target.value;
+         }
+         if (event.target.dataset.filter === 'dimension') {
+          initFilters.name = null;
+          initFilters.dimension = event.target.value;
+         }
+      }
+      
+      document.body.addEventListener('change', mainFiltersSwitcher);
+
+      document.querySelector('.search').addEventListener('input', (event) => {
+        for (let item of episodesGrid.data) {
+          if ((item.name).includes(event.target.value.toLowerCase())) {
+            initFilters.name = item.name;
+            gridExample.updateFilter(initFilters);
+          }
+        }
+        if (!event.target.value) {
+            initFilters.name = null;
+            gridExample.updateFilter(initFilters);
+          }
+      })
+
+      const modalFilters = new Modal();
+      const openModalButton = document.querySelector('.filters-btn');
+      openModalButton.addEventListener('click', () => {
+        modalFilters.open();
+        document.body.removeEventListener('change', mainFiltersSwitcher);
+        document.querySelector('.modal').addEventListener('change', modalFiltersSwitcher);
+        document.querySelector('.apply-button').addEventListener('click', (event) => {
+          gridExample.updateFilter(initFilters);
+          modalFilters.close();
+        }, {once: true});
+      })
+
+      
+
+    </script>
+
+    <footer class="page-footer">
+        <p>Make with ❤️ for the MobProgramming team</p>
+    </footer>
+</body>
+</html>
