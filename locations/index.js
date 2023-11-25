@@ -40,8 +40,8 @@ class ExampleCard {
   #template () {
     return (
     `<div class="grid-element">
-      <a href="" class="card-link">${this.#example.name} ${this.#example.dimension}</a>
-      <p class="card-text">${this.#example.type}</p>
+      <a href="" class="card-link">${this.#example.pseudo} ${this.#example.dimenso}</a>
+      <p class="card-text">${this.#example.typo}</p>
      </div>`
     );
   }
