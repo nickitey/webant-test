@@ -60,8 +60,8 @@ header a {
 
 .main-pic {
   display: block;
-  width: 326px;
-  height: 202px;
+  width: 270px;
+  height: 210px;
   margin-top: 16px;
   margin-left: auto;
   margin-right: auto;
@@ -104,7 +104,7 @@ header a {
   background-position: 10px;
   padding-left: 40px;
   padding-right: 20px;
-  width: 326px;
+  width: 500px;
   height: 56px;
 }
 
@@ -172,14 +172,24 @@ header a {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-weight: 500;
+  line-height: 30px;
 }
 
-.card-text {
+.card-subtext {
   margin: 5px;
   width: 100%;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-weight: 400;
+  line-height: 21px;
+}
+
+.card-text {
+  margin: 1px;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
   line-height: 21px;
 }
 
@@ -386,6 +396,16 @@ header a {
     .filters {
       padding-left: 15px;
       padding-right: 15px;
+    }
+
+    #search {
+      width: 312px;
+      padding-right: 0;
+    }
+
+    .main-pic {
+      width: 175px;
+      height: 136px;
     }
   }
   
