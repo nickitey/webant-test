@@ -68,9 +68,6 @@
 
       let initFilters = {
         name: 'rick',
-        species: 'human',
-        sex: 'male',
-        status: 'alive'
       }
 
       if(document.body.clientWidth <= 800) {
@@ -81,19 +78,18 @@
 
       gridExample.updateFilter(initFilters);
 
-      window.addEventListener('resize', () => {
-        if (document.body.clientWidth <= 800) {
-          initFilters.amount = 4;
+      /*window.addEventListener('resize', () => {    //Если останется время, доделаю.
+        if (document.body.clientWidth <= 800) {      //По изначальной задумке это должно уменьшать количество элементов на странице,
+          initFilters.amount = 4;                    //если страница узкая.
           gridExample.updateFilter(initFilters);
         } else {
           initFilters.amount = 12;
           gridExample.updateFilter(initFilters);
         }
-      });
+      });*/
 
       document.querySelector('.more-button-container').addEventListener('click', () => {
         if (document.body.clientWidth <= 800) {
-            console.log(initFilters.amount)
           initFilters.amount += 2;
           gridExample.updateFilter(initFilters);
         } else {
@@ -138,8 +134,8 @@
       document.body.addEventListener('change', mainFiltersSwitcher);
 
       document.querySelector('.search').addEventListener('input', (event) => {
-        for (let item of productGrid.data) {
-          if ((item.name).includes(event.target.value.toLowerCase())) {
+        for (let item of charactersGrid.data) {
+          if ((item.name).startsWith(event.target.value.toLowerCase())) {
             initFilters.name = item.name;
             gridExample.updateFilter(initFilters);
           }
