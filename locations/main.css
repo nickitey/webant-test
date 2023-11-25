@@ -414,6 +414,23 @@ header a {
       display: none;
     }
 
+    .menu-open > .nav-list {
+      position: absolute;
+      left: 117px;
+      top: 108px;
+    }
+    
+    .menu-open > .nav-list > li {
+      margin-bottom: 48px;
+    }
+
+    .menu-open::before {
+      content: url(../assets/close_24px.svg);
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+
     .filters {
       padding-left: 10px;
       padding-right: 10px;
