@@ -15,8 +15,9 @@ class ExampleCard {
   #template () {
     return (
     `<div class="grid-element">
-      <a href="" class="card-link">${this.#example.pseudo} ${this.#example.dimenso}</a>
-      <p class="card-text">${this.#example.typo}</p>
+      <a href="" class="card-link">${this.#example.name}</a>
+      <p class="card-subtext">${this.#example.date}</p>
+      <p class="card-text">${this.#example.code.toUpperCase()}</p>
      </div>`
     );
   }
@@ -46,13 +47,7 @@ class ExampleGrid {
     let inner = this.elem.closest(`.examples`);
     inner.innerHTML = '';
     for (let item of this.examples) {
-      if (this.filters.name && item.name != this.filters.name) {
-          continue;
-        }
-      if (this.filters.dimension && item.dimension != this.filters.dimension) {
-          continue;
-        }
-      if (this.filters.type && item.type != this.filters.type) {
+      if (this.filters.code && item.code != this.filters.code) {
           continue;
         }
       if (this.filters.amount && this.elem.querySelectorAll('.grid-element').length >= this.filters.amount) {
@@ -66,73 +61,6 @@ class ExampleGrid {
   updateFilter(filters) {
     Object.assign(this.filters, filters);
     this.#elementContent();
-  }
-}
-
-
-class Modal {
-  #elem;
-
-  constructor() {
-    this.#elem = null;
-  }
-
-  open = () => {
-    this.#render();
-    document.body.append(this.#elem);
-    this.#onClickEvent();
-    this.#escapeEvent();
-  }
-
-  close = () => {
-    this.#elem.remove();
-    document.removeEventListener('keydown', this.#escape);
-  }
-
-  #render = () => {
-    return this.#elem = createElement(this.#template());
-  }
-
-  #template = () => {
-    return `
-    <div class="modal">
-      <div class="modal-inner">
-        <div class="modal-header">
-          <span>Filters</span>
-          <img src="../assets/close_24px.svg" alt="Close button icon" class="close-button">
-        </div>
-        <div class="modal-body">
-            <select name="type" class="filter select" data-filter="type">
-              <option disabled selected hidden>Type</option>
-              <option value="planet">Planet</option>
-              <option value="not-a-planet">Not a planet</option>
-            </select>
-            <select name="dimension" class="filter select" data-filter="dimension">
-              <option disabled selected hidden>Dimension</option>
-              <option value="C-137">C-137</option>
-              <option value="non-c-137">Non-C-137</option>
-            </select>
-          <button type="button" class="apply-button">Apply</button>
-        </div>
-      </div>
-    </div>`;
-  }
-
-  #onClickEvent = () => {
-    const button = document.querySelector('.close-button');
-    button.addEventListener('click', this.close, {once: true});
-    document.removeEventListener('keydown', this.#escape);
-  }
-
-  #escape = (event) => {
-    if (event.code == 'Escape') {
-      this.#elem.remove();
-      document.body.classList.remove('is-modal-open');
-    }
-  }
-
-  #escapeEvent = () => {
-    document.addEventListener('keydown', this.#escape, {once: true});
   }
 }
 

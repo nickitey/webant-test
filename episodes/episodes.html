@@ -37,13 +37,11 @@
     <script type="module">
       switcher();
 
-      const episodesGrid = await axios.get('../api/planets.json');
+      const episodesGrid = await axios.get('../api/episodes.json');
       const gridExample = new ExampleGrid(episodesGrid.data);
       document.querySelector('.filters').after(gridExample.elem);
 
-      let initFilters = {
-        name: "earth",
-      }
+      let initFilters = {};
 
       if(document.body.clientWidth <= 800) {
         initFilters.amount = 4;
@@ -52,16 +50,6 @@
       }
 
       gridExample.updateFilter(initFilters);
-
-      window.addEventListener('resize', () => {
-        if (document.body.clientWidth <= 800) {
-          initFilters.amount = 4;
-          gridExample.updateFilter(initFilters);
-        } else {
-          initFilters.amount = 12;
-          gridExample.updateFilter(initFilters);
-        }
-      });
 
       document.querySelector('.more-button-container').addEventListener('click', () => {
         if (document.body.clientWidth <= 800) {
@@ -74,59 +62,20 @@
         }
       })
 
-      function mainFiltersSwitcher(event) {
-        if (event.target.dataset.filter === 'type') {
-          initFilters.name = null;
-          initFilters.type = event.target.value;
-          gridExample.updateFilter(initFilters);
-         }
-         if (event.target.dataset.filter === 'dimension') {
-          initFilters.name = null;
-          initFilters.dimension = event.target.value;
-          gridExample.updateFilter(initFilters);
-         }
-      }
-
-      function modalFiltersSwitcher(event) {
-        if (event.target.dataset.filter === 'type') {
-          initFilters.name = null;
-          initFilters.type = event.target.value;
-         }
-         if (event.target.dataset.filter === 'dimension') {
-          initFilters.name = null;
-          initFilters.dimension = event.target.value;
-         }
-      }
-      
-      document.body.addEventListener('change', mainFiltersSwitcher);
-
       document.querySelector('.search').addEventListener('input', (event) => {
         for (let item of episodesGrid.data) {
-          if ((item.name).includes(event.target.value.toLowerCase())) {
-            initFilters.name = item.name;
+          if ((item.code).startsWith(event.target.value.toLowerCase())) { // Логика нуждается в усовершенствовании, функция из всех значений свойств объекта присваивает последнее
+            console.log(item.code)
+            initFilters.code = item.code;
             gridExample.updateFilter(initFilters);
           }
         }
         if (!event.target.value) {
-            initFilters.name = null;
+            initFilters.code = null;
             gridExample.updateFilter(initFilters);
           }
+          console.log(initFilters)
       })
-
-      const modalFilters = new Modal();
-      const openModalButton = document.querySelector('.filters-btn');
-      openModalButton.addEventListener('click', () => {
-        modalFilters.open();
-        document.body.removeEventListener('change', mainFiltersSwitcher);
-        document.querySelector('.modal').addEventListener('change', modalFiltersSwitcher);
-        document.querySelector('.apply-button').addEventListener('click', (event) => {
-          gridExample.updateFilter(initFilters);
-          modalFilters.close();
-        }, {once: true});
-      })
-
-      
-
     </script>
 
     <footer class="page-footer">
