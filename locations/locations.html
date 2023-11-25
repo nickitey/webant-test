@@ -33,10 +33,10 @@
                 ADVANCED FILTERS
             </div>
             <div class="type op-adaptive">
-                <select name="name" class="filter select" data-filter="name">
+                <select name="name" class="filter select" data-filter="type">
                     <option disabled selected hidden>Type</option>
-                    <option value="earth">Earth</option>
-                    <option value="non-earth">Non-Earth</option>
+                    <option value="planet">Planet</option>
+                    <option value="not-a-planet">Not a planet</option>
                 </select>
             </div>
             <div class="dimension op-adaptive">
@@ -59,8 +59,8 @@
       document.querySelector('.filters').after(gridExample.elem);
 
       let initFilters = {
-        name: "Earth",
-        type: "Planet",
+        //name: "earth",
+        type: 'planet'
       }
 
       if(document.body.clientWidth <= 800) {
@@ -91,16 +91,22 @@
           gridExample.updateFilter(initFilters);
         }
       })
-      /*document.body.addEventListener('change', (event) => {
-        if (event.target.dataset.filter === 'name') {
-          initFilters.name = event.target.value;
+      
+      document.body.addEventListener('change', (event) => {
+        if (event.target.dataset.filter === 'type') {
+          initFilters.type = event.target.value;
           gridExample.updateFilter(initFilters);
          }
          if (event.target.dataset.filter === 'dimension') {
           initFilters.dimension = event.target.value;
           gridExample.updateFilter(initFilters);
          }
-      })*/
+      })
+
+      document.querySelector('.search').addEventListener('input', (event) => {
+        initFilters.name = event.target.value.toLowerCase();
+        gridExample.updateFilter(initFilters);
+      })
     </script>
 
     <footer class="page-footer">
