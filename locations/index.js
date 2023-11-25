@@ -141,7 +141,7 @@ function switcher() {
   const navList = document.querySelector('.nav-list');
   const sectionMain = document.querySelector('.main-content');
   const pageFooter = document.querySelector('.page-footer');
-  document.addEventListener('click', (event) => {
+  navMenu.addEventListener('click', (event) => {
     if (!navList.style.display || navList.style.display === 'none') {
       navMenu.classList.add('menu-open');
       navList.style.display = 'inline';
