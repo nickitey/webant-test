@@ -104,8 +104,15 @@
       })
 
       document.querySelector('.search').addEventListener('input', (event) => {
-        initFilters.name = event.target.value.toLowerCase();
-        gridExample.updateFilter(initFilters);
+        for (let item of productGrid.data) {
+          if ((item.name).includes(event.target.value.toLowerCase())) {
+            initFilters.name = item.name;
+            gridExample.updateFilter(initFilters);
+          }
+          if (!event.target.value) {
+            return;
+          }
+        }
       })
     </script>
 
