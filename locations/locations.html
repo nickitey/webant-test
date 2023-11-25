@@ -29,11 +29,11 @@
             <div class="search">
               <input type="search" id="search" name="search" class="filter" placeholder="Filter by name...">
             </div>
-            <div class="adaptive">
+            <div class="filters-btn">
                 ADVANCED FILTERS
             </div>
-            <div class="type op-adaptive">
-                <select name="name" class="filter select" data-filter="type">
+            <div class="op-adaptive">
+                <select name="type" class="filter select" data-filter="type">
                     <option disabled selected hidden>Type</option>
                     <option value="planet">Planet</option>
                     <option value="not-a-planet">Not a planet</option>
@@ -113,6 +113,12 @@
             return;
           }
         }
+      })
+
+      const modalFilters = new Modal();
+      const openModalButton = document.querySelector('.filters-btn');
+      openModalButton.addEventListener('click', () => {
+        modalFilters.open();
       })
     </script>
 

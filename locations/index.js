@@ -4,31 +4,6 @@ function createElement(html) {
     return div.firstElementChild;
   };
 
-function switcher() {
-  const navMenu = document.querySelector('.main-navigation');
-  const navList = document.querySelector('.nav-list');
-  const filterList = document.querySelector('.adaptive');
-  const filters = document.querySelectorAll('.op-adaptive');
-  document.addEventListener('click', (event) => {
-    if (event.target === navMenu) {
-      if (!navList.style.display || navList.style.display === 'none') {
-        navList.style.display = 'inline';
-      } else {
-        navList.style.display = 'none';
-      }
-    }
-    if (event.target === filterList) {
-        filters.forEach((item) => {
-          if (!item.style.display || item.style.display === 'none') {
-              item.style.display = 'inline';
-            } else {
-              item.style.display = 'none';
-            }
-        });
-      }
-  })
-}
-
 class ExampleCard {
   elem;
   #example = {};
@@ -92,5 +67,89 @@ class ExampleGrid {
     Object.assign(this.filters, filters);
     this.#elementContent();
   }
+}
+
+
+class Modal {
+  #elem;
+
+  constructor() {
+    this.#elem = null;
+  }
+
+  open = () => {
+    this.#render();
+    document.body.append(this.#elem);
+    this.#onClickEvent();
+    this.#escapeEvent();
+  }
+
+  close = () => {
+    this.#elem.remove();
+    document.removeEventListener('keydown', this.#escape);
+  }
+
+  #render = () => {
+    return this.#elem = createElement(this.#template());
+  }
+
+  #template = () => {
+    return `
+    <div class="modal">
+      <div class="modal-inner">
+        <div class="modal-header">
+          <span>Filters</span>
+          <img src="../assets/close_24px.svg" alt="Close button icon" class="close-button">
+        </div>
+        <div class="modal-body">
+            <select name="type" class="filter select" data-filter="type">
+              <option disabled selected hidden>Type</option>
+              <option value="planet">Planet</option>
+              <option value="not-a-planet">Not a planet</option>
+            </select>
+            <select name="dimension" class="filter select" data-filter="dimension">
+              <option disabled selected hidden>Dimension</option>
+              <option value="C-137">C-137</option>
+              <option value="non-c-137">Non-C-137</option>
+            </select>
+          <button type="button" class="apply-button">Apply</button>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  #onClickEvent = () => {
+    const button = document.querySelector('.close-button');
+    button.addEventListener('click', this.close, {once: true});
+    document.removeEventListener('keydown', this.#escape);
+  }
+
+  #escape = (event) => {
+    if (event.code == 'Escape') {
+      this.#elem.remove();
+      document.body.classList.remove('is-modal-open');
+    }
+  }
+
+  #escapeEvent = () => {
+    document.addEventListener('keydown', this.#escape, {once: true});
+  }
+}
+
+function switcher() {
+  const navMenu = document.querySelector('.main-navigation');
+  const navList = document.querySelector('.nav-list');
+  const sectionMain = document.querySelector('.main-content');
+  document.addEventListener('click', (event) => {
+    if (event.target === navMenu) {
+      if (!navList.style.display || navList.style.display === 'none') {
+        navList.style.display = 'inline';
+        sectionMain.style.display = 'none';
+      } else {
+        navList.style.display = 'none';
+        sectionMain.style.display = '';
+      }
+    }
+  })
 }
 
