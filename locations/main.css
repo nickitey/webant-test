@@ -183,7 +183,7 @@ header a {
   line-height: 21px;
 }
 
-.button {
+.more-button-container {
   display: flex;
   justify-content: space-around;
   margin-bottom: 25px;

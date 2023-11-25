@@ -47,7 +47,7 @@
                 </select>
             </div>
         </section>
-        <div class="button">
+        <div class="more-button-container">
           <button type="button" class="more-btn" id="button">LOAD MORE</button>
         </div>
     </main>
@@ -59,7 +59,7 @@
       document.querySelector('.filters').after(gridExample.elem);
 
       let initFilters = {
-        //name: "earth",
+        name: "earth",
         type: 'planet'
       }
 
@@ -81,7 +81,7 @@
         }
       });
 
-      document.querySelector('button').addEventListener('click', () => {
+      document.querySelector('.more-button-container').addEventListener('click', () => {
         if (document.body.clientWidth <= 800) {
             console.log(initFilters.amount)
           initFilters.amount += 2;
@@ -91,17 +91,32 @@
           gridExample.updateFilter(initFilters);
         }
       })
-      
-      document.body.addEventListener('change', (event) => {
+
+      function mainFiltersSwitcher(event) {
         if (event.target.dataset.filter === 'type') {
+          initFilters.name = null;
           initFilters.type = event.target.value;
           gridExample.updateFilter(initFilters);
          }
          if (event.target.dataset.filter === 'dimension') {
+          initFilters.name = null;
           initFilters.dimension = event.target.value;
           gridExample.updateFilter(initFilters);
          }
-      })
+      }
+
+      function modalFiltersSwitcher(event) {
+        if (event.target.dataset.filter === 'type') {
+          initFilters.name = null;
+          initFilters.type = event.target.value;
+         }
+         if (event.target.dataset.filter === 'dimension') {
+          initFilters.name = null;
+          initFilters.dimension = event.target.value;
+         }
+      }
+      
+      document.body.addEventListener('change', mainFiltersSwitcher);
 
       document.querySelector('.search').addEventListener('input', (event) => {
         for (let item of productGrid.data) {
@@ -109,17 +124,27 @@
             initFilters.name = item.name;
             gridExample.updateFilter(initFilters);
           }
-          if (!event.target.value) {
-            return;
-          }
         }
+        if (!event.target.value) {
+            initFilters.name = null;
+            gridExample.updateFilter(initFilters);
+          }
       })
 
       const modalFilters = new Modal();
       const openModalButton = document.querySelector('.filters-btn');
       openModalButton.addEventListener('click', () => {
         modalFilters.open();
+        document.body.removeEventListener('change', mainFiltersSwitcher);
+        document.querySelector('.modal').addEventListener('change', modalFiltersSwitcher);
+        document.querySelector('.apply-button').addEventListener('click', (event) => {
+          gridExample.updateFilter(initFilters);
+          modalFilters.close();
+        }, {once: true});
       })
+
+      
+
     </script>
 
     <footer class="page-footer">
