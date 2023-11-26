@@ -54,27 +54,27 @@ header a {
 }
 
 .back-button {
-    position: absolute;
-    top: 100px;
-    left: 210px;
-    text-transform: uppercase;
-    font-family: "Karla", sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    display: flex;
-    flex-direction: row;
+  position: absolute;
+  top: 100px;
+  left: 210px;
+  text-transform: uppercase;
+  font-family: "Karla", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
   }
   
-  .back-button h3 {
-    margin: 0;
-    padding-left: 8px;
-  }
+.back-button h3 {
+  margin: 0;
+  padding-left: 8px;
+}
   
-  .back-button::before {
-    content: url('../../assets/arrow_back_24px.svg');
-    margin-top: auto;
-    margin-bottom: auto;
-  }
+.back-button::before {
+  content: url('../../assets/arrow_back_24px.svg');
+  margin-top: auto;
+  margin-bottom: auto;
+}
 
 .main-content {
   width: 100vw;
@@ -128,6 +128,7 @@ header a {
 .grid-header {
   margin-top: 50px;
   margin-left: 210px;
+  margin-bottom: 0;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 20px;
@@ -140,7 +141,7 @@ header a {
   display: flex;
   width: 100%;
   max-width: 1120px;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   padding-top: 35px;
   align-items: center;
@@ -213,7 +214,7 @@ header a {
   text-align: center;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1180px) {
   .examples {
     justify-content: space-between;
     padding-top: 5px;
@@ -221,6 +222,20 @@ header a {
 
   .grid-element {
     max-width: 240px;
+  }
+
+  .back-button {
+    top: 100px;
+    left: 50px;
+  }
+  
+  .grid-header {
+    margin-left: 50px;
+  }
+
+  .table-container {
+    padding-left: 210px;
+    padding-right: 210px;
   }
 
 }
@@ -240,7 +255,7 @@ header a {
     h3 {
       margin: 5px;
     }
-  
+
     .nav-list {
       display: flex;
       flex-direction: column;
@@ -252,34 +267,51 @@ header a {
     header li {
       padding-left: 0;
     }
+
+    .back-button {
+      top: 190px;
+      left: 50px;
+    }
+
+    .dimension-name {
+      margin-top: 50px;
+    }
   
     .examples {
       padding-left: 40px;
       padding-right: 40px;
-      flex-direction: column;
       padding-top: 5px;
+      justify-content: space-around;
     }
     
     .grid-element {
-      width: 50%;
+      width: 240px;
+    }
+        
+    .card-image {
+      width: 100%;
+      height: 232px;
+    }
+  
+    .grid-element {
+      max-width: 100%;
+      width: 312px;
+      height: 100%;
     }
   }
   
   @media (max-width: 510px) {
-    .main-pic {
-      max-width: 100%;
-      width: 312px;
-      height: 104px;
-    }
-    
     header {
       padding: 0;
       margin-left: auto;
       margin-right: auto;
     }
-  }
-  
-  @media (max-width: 400px) {
+
+    .table-container {
+      padding-left: 100px;
+      padding-right: 100px;
+    }
+
     header {
       display: block;
       position: relative;
@@ -294,7 +326,7 @@ header a {
     }
   
     .main-navigation::before {
-      content: url(../assets/menu_24px.png);
+      content: url(../../assets/menu_24px.png);
       position: absolute;
       right: 20px;
       top: 20px;
@@ -320,17 +352,17 @@ header a {
       right: 20px;
       top: 20px;
     }
-  
-    .op-adaptive {
-      display: none;
+
+    .back-button {
+      top: 84px;
+      left: 50px;
     }
     
     .examples {
       padding-top: 10px;
       margin-bottom: 10px;
-    }
-  
-    .grid-element {
-      width: 90%;
+      padding-left: 5px;
+      padding-right: 5px;
+      max-width: 100%;
     }
   }

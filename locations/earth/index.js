@@ -72,7 +72,7 @@ function switcher() {
     pageFooter.style.display = sectionMain.style.display;
   })
   window.addEventListener('resize', () => {
-    if (document.body.clientWidth > 445) {
+    if (document.body.clientWidth > 510) {
       navList.style.display = 'flex';
       sectionMain.style.display = '';
     } else {
