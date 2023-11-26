@@ -53,7 +53,6 @@
 
       document.querySelector('.more-button-container').addEventListener('click', () => {
         if (document.body.clientWidth <= 800) {
-            console.log(initFilters.amount)
           initFilters.amount += 2;
           gridExample.updateFilter(initFilters);
         } else {
@@ -64,17 +63,22 @@
 
       document.querySelector('.search').addEventListener('input', (event) => {
         for (let item of episodesGrid.data) {
-          if ((item.code).startsWith(event.target.value.toLowerCase())) { // Логика нуждается в усовершенствовании, функция из всех значений свойств объекта присваивает последнее
-            console.log(item.code)
-            initFilters.code = item.code;
+          if (event.target.value.toLowerCase().startsWith('s')
+            || event.target.value.toLowerCase().startsWith('e')
+            || Number.isFinite(+event.target.value)
+          ) {
+            initFilters.code = event.target.value.toLowerCase();
+            gridExample.updateFilter(initFilters);
+          } else {
+            initFilters.name = event.target.value.toLowerCase();
             gridExample.updateFilter(initFilters);
           }
         }
         if (!event.target.value) {
             initFilters.code = null;
+            initFilters.name = null;
             gridExample.updateFilter(initFilters);
           }
-          console.log(initFilters)
       })
     </script>
 

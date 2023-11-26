@@ -47,8 +47,9 @@ class ExampleGrid {
     let inner = this.elem.closest(`.examples`);
     inner.innerHTML = '';
     for (let item of this.examples) {
-      if (this.filters.code && item.code != this.filters.code) {
-          continue;
+      if (this.filters.code && !item.code.includes(this.filters.code)
+      || this.filters.name && !item.name.toLowerCase().includes(this.filters.name)) {
+        continue;
         }
       if (this.filters.amount && this.elem.querySelectorAll('.grid-element').length >= this.filters.amount) {
         continue;

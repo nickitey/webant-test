@@ -100,17 +100,14 @@
 
       function mainFiltersSwitcher(event) {
         if (event.target.dataset.filter === 'species') {
-          initFilters.name = null;
           initFilters.species = event.target.value;
           gridExample.updateFilter(initFilters);
          }
          if (event.target.dataset.filter === 'sex') {
-          initFilters.name = null;
           initFilters.sex = event.target.value;
           gridExample.updateFilter(initFilters);
          }
          if (event.target.dataset.filter === 'status') {
-          initFilters.name = null;
           initFilters.status = event.target.value;
           gridExample.updateFilter(initFilters);
          }
@@ -118,15 +115,13 @@
 
       function modalFiltersSwitcher(event) {
         if (event.target.dataset.filter === 'species') {
-          initFilters.name = null;
+
           initFilters.species = event.target.value;
          }
          if (event.target.dataset.filter === 'sex') {
-          initFilters.name = null;
           initFilters.sex = event.target.value;
          }
          if (event.target.dataset.filter === 'status') {
-          initFilters.name = null;
           initFilters.status = event.target.value;
          }
       }
@@ -136,7 +131,12 @@
       document.querySelector('.search').addEventListener('input', (event) => {
         for (let item of charactersGrid.data) {
           if ((item.name).startsWith(event.target.value.toLowerCase())) {
-            initFilters.name = item.name;
+            initFilters.name = event.target.value.toLowerCase();
+            gridExample.updateFilter(initFilters);
+          }
+          if ((item.surname).startsWith(event.target.value.toLowerCase())) {
+            initFilters.name = null;
+            initFilters.surname = event.target.value.toLowerCase();
             gridExample.updateFilter(initFilters);
           }
         }

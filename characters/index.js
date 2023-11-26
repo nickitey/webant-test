@@ -49,18 +49,19 @@ class ExampleGrid {
     const inner = this.elem.closest(`.examples`);
     inner.innerHTML = '';
     for (let item of this.examples) {
-      if (this.filters.name && item.name != this.filters.name) {
+      if ((this.filters.name && !item.name.includes(this.filters.name))
+          || (this.filters.surname && !item.surname.includes(this.filters.surname))) {
         continue;
-        }
+      }
       if (this.filters.species && item.species != this.filters.species) {
         continue;
-        }
+      }
       if (this.filters.sex && item.sex != this.filters.sex) {
         continue;
-        }
+      }
       if (this.filters.status && item.status != this.filters.status) {
         continue;
-        }
+      }
       if (this.filters.amount && this.elem.querySelectorAll('.grid-element').length >= this.filters.amount) {
         continue;
       }
