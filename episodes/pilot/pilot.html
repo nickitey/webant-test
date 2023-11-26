@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="main.css" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./index.js" defer></script>
+    <title>Pilot</title>
+</head>
+<body>
+    <header>
+        <a href="" class="logo">
+          <img src="../../assets/logo-black.png" alt="logo-black">
+        </a>
+
+        <nav class="main-navigation">
+            <ul class="nav-list">
+                <li><h3><a href="">Characters</a></h3></li>
+                <li><h3><a href="">Locations</a></h3></li>
+                <li><h3><a href="">Episodes</a></h3></li>
+            </ul>
+        </nav>
+        <div class="back-button">
+            <a href="">
+              <h3>go back</h3>
+            </a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="episode-name"> Pilot </h1>
+        <div class="table-container">
+            <table class="table-row">
+              <tbody>
+                <tr>
+                  <td>
+                      <p class="cell-header">Episode</p>
+                      <p class="cell-text">S01E01</p>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+          <table class="table-row">
+            <tbody>
+              <tr>
+                <td>
+                    <p class="cell-header">Date</p>
+                    <p class="cell-text">December 2, 2013</p>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        </div>
+        <h3 class="grid-header">Cast</h3>
+    </main>
+    <script type="module">
+      switcher();
+
+      const charactersGrid = await axios.get('../../api/characters.json');
+      const gridExample = new ExampleGrid(charactersGrid.data);
+      document.querySelector('.grid-header').after(gridExample.elem);
+    </script>
+
+    <footer class="page-footer">
+        <p>Make with ❤️ for the MobProgramming team</p>
+    </footer>
+</body>
+</html>
