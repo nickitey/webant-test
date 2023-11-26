@@ -15,7 +15,7 @@ class ExampleCard {
   #template () {
     return (
     `<div class="grid-element">
-      <a href="" class="card-link">${this.#example.name}</a>
+      <a href="${this.#example.link}" class="card-link">${this.#example.name}</a>
       <p class="card-subtext">${this.#example.date}</p>
       <p class="card-text">${this.#example.code.toUpperCase()}</p>
      </div>`

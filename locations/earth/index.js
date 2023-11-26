@@ -15,7 +15,7 @@ class ExampleCard {
   #template () {
     return (
     `<div class="grid-element">
-      <a href="" class="card-link">
+      <a href="${this.#example.link}" class="card-link">
         <img src="${this.#example.image}" alt="Character's photo" class="card-image">
         <p class="card-text">${this.#example.pseudoName} ${this.#example.pseudoSurname}</p>
         <p class="card-subtext">${this.#example.speciesTypo}</p>
