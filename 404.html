@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="main.css" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./index.js" defer></script>
+    <title>Rick Sanchez</title>
+</head>
+<body>
+    <header>
+        <a href="" class="logo">
+          <img src="../../assets/logo-black.png" alt="logo-black">
+        </a>
+        <nav class="main-navigation">
+            <ul class="nav-list">
+                <li><h3><a href="\characters\index.html">Characters</a></h3></li>
+                <li><h3><a href="\locations\index.html">Locations</a></h3></li>
+                <li><h3><a href="\episodes\index.html">Episodes</a></h3></li>
+            </ul>
+        </nav>
+        <div class="back-button">
+            <a href="javascript:history.back()">
+              <h3>go back</h3>
+            </a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <img src="\assets\PngItem_438051.png" alt="'Rick & Morty's' series logo" class="main-pic">
+        <h1 class="main-message">Ooops... Morty, we have a problem!</h1>
+        <p class="error-message">The page you requested is absent in this dimension.<br>So take your portal gun and try again!</p>
+        <img src="\assets\loading component.png" alt="Green portal image" class="sub-pic">
+    </main>
+    <script type="module">
+      switcher();
+    </script>
+
+    <footer class="page-footer">
+        <p>Make with ❤️ for the MobProgramming team</p>
+    </footer>
+</body>
+</html>
