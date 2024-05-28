@@ -17,11 +17,11 @@ function hideNavBar(event) {
 }
 
 function switcher() {
-  if (document.body.clientWidth <= 400) {
+  if (document.body.clientWidth <= 445) {
     navMenu.addEventListener('click', hideNavBar);
   }
   window.addEventListener('resize', () => {
-    if (document.body.clientWidth > 400) {
+    if (document.body.clientWidth > 445) {
       navMenu.removeEventListener('click', hideNavBar)
       navList.style.display = 'flex';
       sectionMain.style.display = '';
