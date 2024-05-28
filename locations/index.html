@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <a href="" class="logo">
+        <a href="#" class="logo">
           <img src="../assets/logo-black.png" alt="logo-black">
         </a>
 
@@ -83,7 +83,6 @@
 
       document.querySelector('.more-button-container').addEventListener('click', () => {
         if (document.body.clientWidth <= 800) {
-            console.log(initFilters.amount)
           initFilters.amount += 2;
           gridExample.updateFilter(initFilters);
         } else {

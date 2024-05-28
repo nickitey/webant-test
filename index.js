@@ -4,7 +4,6 @@ function switcher() {
   const sectionMain = document.querySelector('.main-content');
   const pageFooter = document.querySelector('.page-footer');
   const backButton = document.querySelector('.back-button');
-  console.log(backButton)
   navMenu.addEventListener('click', (event) => {
     if (!navList.style.display || navList.style.display === 'none') {
       navMenu.classList.add('menu-open');
